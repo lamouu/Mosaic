@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsbiht8h7t4ry"]
+
+[ext_resource type="PackedScene" uid="uid://ck3srqqy4ot8f" path="res://art/models/model_packages/Barrel.glb" id="1_b2u13"]
+
+[node name="Barrel" instance=ExtResource("1_b2u13")]

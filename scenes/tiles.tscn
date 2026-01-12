@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgeha15pwnq4s"]
+
+[ext_resource type="PackedScene" uid="uid://dsbiht8h7t4ry" path="res://art/models/model_scenes/barrel.tscn" id="1_1g8qg"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="Barrel" parent="." instance=ExtResource("1_1g8qg")]
