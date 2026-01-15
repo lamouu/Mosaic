@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgeha15pwnq4s"]
 
-[ext_resource type="PackedScene" uid="uid://ck3srqqy4ot8f" path="res://art/models/model_packages/Barrel.glb" id="1_1g8qg"]
+[ext_resource type="PackedScene" uid="uid://3lkad314xwcj" path="res://art/models/model_packages/shit tower.glb" id="2_od8sr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od8sr"]
 albedo_color = Color(0, 1, 0, 1)
@@ -17,7 +17,8 @@ material = SubResource("StandardMaterial3D_1g8qg")
 
 [node name="Tiles" type="Node3D"]
 
-[node name="Barrel" parent="." instance=ExtResource("1_1g8qg")]
+[node name="shit tower" parent="." instance=ExtResource("2_od8sr")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Start" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_jhpg2")

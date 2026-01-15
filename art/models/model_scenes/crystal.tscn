@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwrfj10od5bj2"]
+
+[ext_resource type="PackedScene" uid="uid://cvotl1s7qro1v" path="res://art/models/model_packages/crystal.glb" id="1_2kkkk"]
+
+[node name="crystal" instance=ExtResource("1_2kkkk")]

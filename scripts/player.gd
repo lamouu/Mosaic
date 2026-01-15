@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 0.3
+const JUMP_VELOCITY = 2
 const SENSITIVITY = 0.001
 
 @onready var head = $Head
