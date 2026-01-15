@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cv1cmljkwx0wa"]
+
+[ext_resource type="Shader" uid="uid://cdfdekl3lyyrf" path="res://art/shaders/outline.gdshader" id="1_i6kdp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i6kdp")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_threshold = 10.0

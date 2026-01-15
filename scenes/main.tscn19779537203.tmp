@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqjuqhoxl4xqj"]
+
+[ext_resource type="PackedScene" uid="uid://psht6vkwpppi" path="res://scenes/player.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c5m4bs5yl0sjy" path="res://scenes/enemy.tscn" id="2_jyhfs"]
+[ext_resource type="MeshLibrary" uid="uid://dyqr51tdnw8np" path="res://art/resources/tiles.tres" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://iimc3l72t6w2" path="res://scenes/grid_map.gd" id="4_jyhfs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_rwgxs"]
+sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
+
+[sub_resource type="Environment" id="Environment_4wyf3"]
+background_mode = 2
+sky = SubResource("Sky_rwgxs")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4654865, 1.1307063, 2.2103834)
+
+[node name="Enemy" parent="." instance=ExtResource("2_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6036944, 1.1371366, 5.585624)
+script = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4wyf3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.4784621, 0.8781082, 0, -0.8781082, -0.4784621, 0, 3.2445421, -2.9433188)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135, 0)
+use_collision = true
+size = Vector3(12, 0.002, 12)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("3_tbgi4")
+cell_size = Vector3(1, 1, 1)
+cell_scale = 0.4
+bake_navigation = true
+data = {
+"cells": PackedInt32Array(5, 65530, 0, 4, 65530, 0, 3, 65530, 0, 2, 65530, 0, 1, 65530, 0, 0, 65530, 0, 65535, 65530, 0, 65534, 65530, 0, 65533, 65530, 0, 65532, 65530, 0, 65530, 65530, 0, 65530, 65531, 0, 65530, 65532, 0, 65530, 65533, 0, 65530, 65534, 0, 65530, 65535, 0, 65530, 0, 0, 65530, 1, 0, 65530, 2, 0, 65530, 3, 0, 65530, 4, 0, 65530, 5, 0, 65531, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 5, 5, 0, 5, 4, 0, 5, 3, 0, 5, 2, 0, 5, 1, 0, 5, 0, 0, 5, 65535, 0, 5, 65534, 0, 5, 65533, 0, 5, 65532, 0, 5, 65531, 0, 4, 3, 0, 3, 3, 0, 2, 3, 0, 1, 3, 0, 0, 3, 0, 65535, 3, 0, 65534, 3, 0, 65533, 3, 0, 65532, 3, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 3, 0, 0, 3, 65535, 0, 3, 65534, 0, 3, 65533, 0, 3, 65532, 0, 1, 65531, 0, 1, 65532, 0, 1, 65533, 0, 1, 65534, 0, 1, 65535, 0, 65535, 0, 0, 65535, 65535, 0, 65535, 65534, 0, 65535, 65533, 0, 65535, 65532, 0, 65533, 65531, 0, 65533, 65532, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 65532, 65535, 0, 65531, 65533, 0, 65532, 65531, 0)
+}
+script = ExtResource("4_jyhfs")

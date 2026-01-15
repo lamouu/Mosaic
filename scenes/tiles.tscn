@@ -1,7 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgeha15pwnq4s"]
+[gd_scene load_steps=6 format=3 uid="uid://bgeha15pwnq4s"]
 
-[ext_resource type="PackedScene" uid="uid://dsbiht8h7t4ry" path="res://art/models/model_scenes/barrel.tscn" id="1_1g8qg"]
+[ext_resource type="PackedScene" uid="uid://ck3srqqy4ot8f" path="res://art/models/model_packages/Barrel.glb" id="1_1g8qg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od8sr"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jhpg2"]
+material = SubResource("StandardMaterial3D_od8sr")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g8qg"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_od8sr"]
+material = SubResource("StandardMaterial3D_1g8qg")
 
 [node name="Tiles" type="Node3D"]
 
 [node name="Barrel" parent="." instance=ExtResource("1_1g8qg")]
+
+[node name="Start" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jhpg2")
+
+[node name="Finish" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_od8sr")
