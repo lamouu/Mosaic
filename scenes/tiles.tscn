@@ -1,27 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgeha15pwnq4s"]
+[gd_scene load_steps=4 format=3 uid="uid://bgeha15pwnq4s"]
 
-[ext_resource type="PackedScene" uid="uid://3lkad314xwcj" path="res://art/models/model_packages/shit tower.glb" id="2_od8sr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od8sr"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_jhpg2"]
-material = SubResource("StandardMaterial3D_od8sr")
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g8qg"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_od8sr"]
-material = SubResource("StandardMaterial3D_1g8qg")
+[ext_resource type="PackedScene" uid="uid://bo37tf0nc1fq3" path="res://art/models/model_scenes/tower.tscn" id="1_jhpg2"]
+[ext_resource type="PackedScene" uid="uid://dkw5npo75dvu1" path="res://art/models/model_scenes/start.tscn" id="2_i3m0d"]
+[ext_resource type="PackedScene" uid="uid://deamov4fnu2y3" path="res://art/models/model_scenes/finish.tscn" id="3_p5lnq"]
 
 [node name="Tiles" type="Node3D"]
 
-[node name="shit tower" parent="." instance=ExtResource("2_od8sr")]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+[node name="Tower" parent="." instance=ExtResource("1_jhpg2")]
+transform = Transform3D(3, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0)
 
-[node name="Start" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_jhpg2")
+[node name="Start" parent="." instance=ExtResource("2_i3m0d")]
 
-[node name="Finish" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_od8sr")
+[node name="Finish" parent="." instance=ExtResource("3_p5lnq")]

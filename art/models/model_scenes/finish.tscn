@@ -9,5 +9,5 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Finish" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Finish" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_cvekl")

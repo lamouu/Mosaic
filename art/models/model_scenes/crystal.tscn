@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cvotl1s7qro1v" path="res://art/models/model_packages/crystal.glb" id="1_2kkkk"]
 
 [node name="crystal" instance=ExtResource("1_2kkkk")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)

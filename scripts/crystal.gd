@@ -11,5 +11,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	progress_track = progress_track + delta / SPEED
+	progress_track = progress_track + delta * SPEED
 	progress = progress_track

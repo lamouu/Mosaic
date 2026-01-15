@@ -3,6 +3,9 @@ extends GridMap
 enum Tile { WALL, START, END }
 
 const PATH_HEIGHT: int = 0
+const REGION_HEIGHT: int = 12
+const REGION_WIDTH: int = 6
+
 
 var astar_grid := AStarGrid2D.new()
 var start_tile = remove_vert(get_used_cells_by_item(Tile.START)[0])
@@ -13,13 +16,20 @@ var wall_tiles_2d: Array[Vector2i]
 
 func _ready():
 	var wall_tiles = convert_tiles_to_2d(wall_tiles_3d)
-	astar_grid.region = find_region(wall_tiles)
+	
+	@warning_ignore("integer_division")
+	astar_grid.region = Rect2i(- REGION_WIDTH / 2, - REGION_HEIGHT / 2, REGION_WIDTH, REGION_HEIGHT)
 	astar_grid.update()
 	
 	add_walls(wall_tiles)
 	astar_grid.update()
 	
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+	
 	var path = astar_grid.get_point_path(start_tile, end_tile)
+	
+	if path.is_empty():
+		print("No viable path")
 	
 	#print(
 	#	'start: ', start_tile,
@@ -27,7 +37,32 @@ func _ready():
 	#	'\npath: ', path
 	#	)
 	
+	
+	visualise_region()
 	visualise_path(path)
+
+# lmfao
+func visualise_region() -> void:
+	var path_curve = Curve3D.new()
+	
+	@warning_ignore("integer_division")
+	var region_corners = [
+		Vector2i(- REGION_WIDTH / 2, - REGION_HEIGHT / 2),
+		Vector2i(- REGION_WIDTH / 2, REGION_HEIGHT / 2 - 1),
+		Vector2i(REGION_WIDTH / 2 - 1,  REGION_HEIGHT / 2 - 1),
+		Vector2i(REGION_WIDTH / 2 - 1, - REGION_HEIGHT / 2),
+		Vector2i(- REGION_WIDTH / 2, - REGION_HEIGHT / 2)
+	]
+
+	for corner in region_corners:
+		var border_3d = add_vert(corner)
+		var border_local = map_to_local(border_3d)
+		
+		path_curve.add_point(border_local)
+	
+	$BorderVisualisation.curve = path_curve
+	$BorderVisualisation.debug_custom_color = Color(0.71, 0.0, 0.0, 1.0)
+
 
 func visualise_path(path):
 	var path_3d = convert_tiles_to_3d(path)
@@ -86,44 +121,3 @@ func add_vert(v2: Vector2i) -> Vector3i:
 
 func remove_vert(v3: Vector3i) -> Vector2i:
 	return Vector2i(v3.x, v3.z)
-
-
-func find_region(tiles: Array) -> Rect2i:
-	var x_max := 0
-	var x_min := 0
-	var y_max := 0
-	var y_min := 0
-	
-	for vec in tiles:
-		var vec_x: int = vec.x
-		var vec_y: int = vec.y
-		
-		if vec_x < x_min:
-			x_min = vec_x
-		elif vec_x > x_max:
-			x_max = vec_x
-		
-		if vec_y < y_min:
-			y_min = vec_y
-		elif vec_y > y_max:
-			y_max = vec_y
-	
-	return region_from_bounds(x_max, x_min, y_max, y_min)
-
-
-# absoluetly fucked, using hard coded numbers atm
-func region_from_bounds(x_max, x_min, y_max, y_min) -> Rect2i:
-	var x = (x_max + x_min) / 2
-	var y = (y_max + y_min) / 2
-	var width = abs(x_max) + abs(x_min)
-	var height = abs(y_max) + abs(y_min)
-	
-	#print(
-	#	'x: ', x,
-	#	'\ny: ', y,
-	#	'\nwidth: ', width,
-	#	'\nheight: ', height,
-	#	'\nRect2i: ', Rect2i(x, y, width, height)
-	#)
-	
-	return Rect2i(-6, -6, 12, 12)

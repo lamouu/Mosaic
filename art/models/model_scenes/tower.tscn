@@ -42,5 +42,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hgg8p")
 
 [node name="Cube" type="MeshInstance3D"]
+transform = Transform3D(18, 0, 0, 0, 30, 0, 0, 0, 18, 0, 0, 0)
 mesh = SubResource("ArrayMesh_2iv53")
 skeleton = NodePath("")
